@@ -33,12 +33,13 @@ ONNXRuntimeModel::ONNXRuntimeModel(file_name_t path_to_model, int intra_op_num_t
 		}
 		session_options.SetIntraOpNumThreads(this->intra_op_num_threads_);
 
-#ifdef _WIN32
 		if (this->use_gpu == "cuda") {
 			OrtCUDAProviderOptions cuda_option;
 			cuda_option.device_id = this->device_id_;
 			session_options.AppendExecutionProvider_CUDA(cuda_option);
 		}
+
+#ifdef _WIN32
 		if (this->use_gpu == "dml") {
 			auto &api = Ort::GetApi();
 			OrtDmlApi *dmlApi = nullptr;

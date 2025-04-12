@@ -327,6 +327,7 @@ obs_properties_t *detect_filter_properties(void *data)
 	obs_property_list_add_string(p_use_gpu, obs_module_text("CPU"), USEGPU_CPU);
 #if defined(__linux__) && defined(__x86_64__)
 	obs_property_list_add_string(p_use_gpu, obs_module_text("GPUTensorRT"), USEGPU_TENSORRT);
+	obs_property_list_add_string(p_use_gpu, obs_module_text("GPUCuda"), USEGPU_CUDA);
 #endif
 #if _WIN32
 	obs_property_list_add_string(p_use_gpu, obs_module_text("GPUDirectML"), USEGPU_DML);
@@ -335,7 +336,7 @@ obs_properties_t *detect_filter_properties(void *data)
 	obs_property_list_add_string(p_use_gpu, obs_module_text("CoreML"), USEGPU_COREML);
 #endif
 
-	obs_properties_add_int_slider(props, "numThreads", obs_module_text("NumThreads"), 0, 8, 1);
+	obs_properties_add_int_slider(props, "numThreads", obs_module_text("NumThreads"), 0, 16, 1);
 
 	// add drop down option for model size: Small, Medium, Large
 	obs_property_t *model_size =

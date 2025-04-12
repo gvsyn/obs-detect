@@ -8,7 +8,7 @@ set(CUSTOM_ONNXRUNTIME_HASH
     ""
     CACHE STRING "Hash of a downloaded ONNX Runtime tarball")
 
-set(Onnxruntime_VERSION "1.17.1")
+set(Onnxruntime_VERSION "1.21.0")
 
 if(CUSTOM_ONNXRUNTIME_URL STREQUAL "")
   set(USE_PREDEFINED_ONNXRUNTIME ON)
@@ -28,17 +28,18 @@ if(USE_PREDEFINED_ONNXRUNTIME)
 
   if(APPLE)
     set(Onnxruntime_URL "${Onnxruntime_BASEURL}/onnxruntime-osx-universal2-${Onnxruntime_VERSION}.tgz")
-    set(Onnxruntime_HASH SHA256=9FA57FA6F202A373599377EF75064AE568FDA8DA838632B26A86024C7378D306)
+    set(Onnxruntime_HASH SHA256=3C3CFC71E538E592192C14D9BAD88EC5D5D8D5D698EBC2C6B3119BE8C90B4670)
   elseif(MSVC)
+	# Windows is kinda dead here, seems to be a special build?
     set(Onnxruntime_URL "${Onnxruntime_WINDOWS_BASEURL}/onnxruntime-windows-${Onnxruntime_WINDOWS_VERSION}-Release.zip")
     set(OOnnxruntime_HASH SHA256=39E63850D9762810161AE1B4DEAE5E3C02363521273E4B894A9D9707AB626C38)
   else()
     if(CMAKE_SYSTEM_PROCESSOR STREQUAL "aarch64")
       set(Onnxruntime_URL "${Onnxruntime_BASEURL}/onnxruntime-linux-aarch64-${Onnxruntime_VERSION}.tgz")
-      set(Onnxruntime_HASH SHA256=70B6F536BB7AB5961D128E9DBD192368AC1513BFFB74FE92F97AAC342FBD0AC1)
+      set(Onnxruntime_HASH SHA256=4508084BDE1232EE1AB4B6FAD2155BE0EA2CCAB1C1AAE9910DDB3FB68A60805E)
     else()
       set(Onnxruntime_URL "${Onnxruntime_BASEURL}/onnxruntime-linux-x64-gpu-${Onnxruntime_VERSION}.tgz")
-      set(Onnxruntime_HASH SHA256=613C53745EA4960ED368F6B3AB673558BB8561C84A8FA781B4EA7FB4A4340BE4)
+      set(Onnxruntime_HASH SHA256=EF37A33BA75E457AEBFD0D7B342AB20424AA6126BC5F565D247F1201B66996CF)
     endif()
   endif()
 else()
